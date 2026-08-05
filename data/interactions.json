@@ -1,0 +1,47 @@
+{
+  "acetaminophen": {
+    "displayName": "아세트아미노펜 (해열진통제)",
+    "avoid": [
+      { "food": "술 (알코올)", "reason": "간에 부담을 크게 늘려 손상 위험이 높아져요.", "severity": "high" }
+    ],
+    "good": [
+      { "food": "충분한 물", "reason": "약 성분 대사와 배출에 도움이 돼요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "warfarin": {
+    "displayName": "와파린 (항응고제)",
+    "avoid": [
+      { "food": "녹색 잎채소 (시금치·케일 등)", "reason": "비타민K가 많아 약효를 떨어뜨릴 수 있어요.", "severity": "high" },
+      { "food": "자몽·자몽주스", "reason": "약물 대사에 영향을 줘 효과가 달라질 수 있어요.", "severity": "medium" }
+    ],
+    "good": [
+      { "food": "일정한 식단 유지", "reason": "채소 섭취량을 갑자기 바꾸지 않는 게 중요해요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "aspirin": {
+    "displayName": "아스피린 (항혈소판제)",
+    "avoid": [
+      { "food": "술 (알코올)", "reason": "위장 출혈 위험이 커질 수 있어요.", "severity": "high" }
+    ],
+    "good": [
+      { "food": "식후 복용", "reason": "위 자극을 줄이는 데 도움이 돼요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "atorvastatin": {
+    "displayName": "아토르바스타틴 (고지혈증약)",
+    "avoid": [
+      { "food": "자몽·자몽주스", "reason": "약물 농도를 높여 부작용 위험이 커질 수 있어요.", "severity": "high" }
+    ],
+    "good": [
+      { "food": "저지방 식단", "reason": "약의 목적인 콜레스테롤 관리에 도움이 돼요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  }
+}

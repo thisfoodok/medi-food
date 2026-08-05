@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>약-음식 궁합 도우미</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>약-음식 궁합 도우미</h1>
+    <p class="sub">약 이름을 검색해 함께 먹으면 좋은 음식과 피할 음식을 확인하세요.</p>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="예: 타이레놀, 와파린…" autocomplete="off">
+      <ul id="suggestions" class="suggestions"></ul>
+    </div>
+
+    <section id="selected" class="selected"></section>
+    <section id="results" class="results"></section>
+
+    <footer class="disclaimer">
+      ⚠️ 이 정보는 일반적인 참고용이며 의학적 조언이 아닙니다.
+      복약과 관련된 최종 판단은 반드시 의사·약사와 상담하세요.
+    </footer>
+  </main>
+
+  <script src="js/lookup.js"></script>
+  <script src="js/matcher.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

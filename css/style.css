@@ -1,0 +1,52 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, "Noto Sans KR", sans-serif;
+  background: #f5f6f8; color: #222; line-height: 1.5;
+}
+.container { max-width: 640px; margin: 0 auto; padding: 24px 16px 80px; }
+h1 { font-size: 1.5rem; margin-bottom: 4px; }
+.sub { color: #666; font-size: .9rem; margin-bottom: 20px; }
+
+.search-box { position: relative; margin-bottom: 16px; }
+#searchInput {
+  width: 100%; padding: 14px 16px; font-size: 1rem;
+  border: 1px solid #ccc; border-radius: 12px; outline: none;
+}
+#searchInput:focus { border-color: #3b82f6; }
+
+.suggestions {
+  list-style: none; position: absolute; width: 100%;
+  background: #fff; border: 1px solid #eee; border-radius: 12px;
+  margin-top: 4px; box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  max-height: 240px; overflow-y: auto; z-index: 10;
+}
+.suggestions li { padding: 12px 16px; cursor: pointer; }
+.suggestions li:hover { background: #f0f4ff; }
+
+.selected { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.chip {
+  background: #3b82f6; color: #fff; padding: 6px 12px;
+  border-radius: 20px; font-size: .85rem; display: flex; gap: 6px; align-items: center;
+}
+.chip button { background: none; border: none; color: #fff; cursor: pointer; font-size: 1rem; }
+
+.card {
+  background: #fff; border-radius: 14px; padding: 18px;
+  margin-bottom: 14px; box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.card h2 { font-size: 1.1rem; margin-bottom: 12px; }
+.food-item { padding: 10px 12px; border-radius: 10px; margin-bottom: 8px; }
+.avoid.high   { background: #fdecec; border-left: 4px solid #e53935; }
+.avoid.medium { background: #fff4e5; border-left: 4px solid #fb8c00; }
+.avoid.low    { background: #fffbe6; border-left: 4px solid #fdd835; }
+.good         { background: #e8f5e9; border-left: 4px solid #43a047; }
+.food-item .food { font-weight: 600; }
+.food-item .reason { font-size: .88rem; color: #555; margin-top: 2px; }
+.source { font-size: .75rem; color: #999; margin-top: 8px; }
+.empty { color: #888; font-size: .9rem; }
+
+.disclaimer {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #fffbe6; border-top: 1px solid #f0e6b0;
+  padding: 10px 16px; font-size: .78rem; color: #6b5d1f; text-align: center;
+}
