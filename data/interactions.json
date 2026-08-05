@@ -180,5 +180,27 @@
     ],
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2026-01"
+  },
+  "almagate": {
+    "displayName": "알마게이트 (제산제)",
+    "avoid": [{ "food": "철분제와 동시 복용", "reason": "2시간 이상 간격을 두는 게 좋아요.", "severity": "medium" }],
+    "good": [],
+    "source": "복약안내 참고",
+    "lastUpdated": "2026-01"
+  },
+  "theobromine": {
+    "displayName": "테오브로민 (기관지 확장 성분)",
+    "avoid": [{ "food": "카페인(커피·에너지음료) 과다", "reason": "두근거림·불면이 심해질 수 있어요.", "severity": "medium" }],
+    "good": [{ "food": "정해진 시간에 복용", "reason": "효과를 일정하게 유지하는 데 좋아요." }],
+    "source": "복약안내 참고",
+    "lastUpdated": "2026-01"
+  },
+  "hydrochlorothiazide": {
+    "displayName": "히드로클로로티아지드 (이뇨제)",
+    "avoid": [{ "food": "짠 음식 (고나트륨)", "reason": "약의 이뇨 효과를 방해할 수 있어요.", "severity": "medium" }],
+    "good": [{ "food": "규칙적인 수분 섭취", "reason": "탈수를 막는 데 도움이 돼요." }],
+    "source": "복약안내 참고",
+    "lastUpdated": "2026-01"
   }
 }
+
