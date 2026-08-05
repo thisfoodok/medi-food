@@ -33,15 +33,15 @@ photoInput.addEventListener('change', async () => {
     const text = await runOCR(file, (p) => {
       ocrStatus.textContent = `사진을 읽는 중… (${p}%)`;
     });
-    const found = extractProductsFromText(text);
+    const found = extractProductsFromText(text); // 상품명 목록
 
     if (found.length === 0) {
       ocrStatus.textContent =
         "약 이름을 찾지 못했어요. 사진을 다시 찍거나 아래에서 직접 검색해 주세요.";
     } else {
-      // ★ 안전장치: 자동 선택하지 않고 사용자에게 확인받는다
+      // ★ 사용자가 사진에서 본 '상품명' 그대로 보여주고 확인받는다
       ocrStatus.innerHTML =
-        "이 약이 맞나요? 눌러서 추가하세요:<br>" +
+        "사진에서 이 약들을 찾았어요. 맞는 약을 눌러 추가하세요:<br>" +
         found.map(n =>
           `<button class="ocr-suggest" data-name="${n}">＋ ${n}</button>`
         ).join(" ");
@@ -49,10 +49,10 @@ photoInput.addEventListener('change', async () => {
   } catch (err) {
     ocrStatus.textContent = "사진 인식에 실패했어요. 다시 시도해 주세요.";
   }
-  photoInput.value = ""; // 같은 사진 다시 올릴 수 있게 초기화
+  photoInput.value = "";
 });
 
-// OCR이 제안한 약을 사용자가 눌러서 확정
+// OCR이 제안한 '상품명'을 사용자가 눌러서 확정
 ocrStatus.addEventListener('click', (e) => {
   const btn = e.target.closest('.ocr-suggest');
   if (!btn) return;
@@ -69,10 +69,12 @@ function removeProduct(name) {
 
 // ── 결과 렌더링 ──
 function render() {
+  // 선택된 약은 '상품명'으로 표시
   selectedEl.innerHTML = [...selectedProducts]
     .map(n => `<span class="chip">${n}<button onclick="removeProduct('${n}')">×</button></span>`)
     .join('');
 
+  // 성분 집합 만들기 (상품명 → 성분)
   const ingredients = new Set();
   selectedProducts.forEach(p =>
     productToIngredients(p).forEach(i => ingredients.add(i)));
