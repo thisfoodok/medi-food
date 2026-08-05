@@ -1,4 +1,3 @@
-// 사용자가 확정한 약: { label, ingredients }
 const selectedDrugs = [];
 
 const input = document.getElementById('searchInput');
@@ -31,27 +30,18 @@ photoInput.addEventListener('change', async () => {
     const text = await runOCR(file, (p) => {
       ocrStatus.textContent = `사진을 읽는 중… (${p}%)`;
     });
-
     const candidates = extractDrugNameCandidates(text);
 
-    // 후보 버튼
-    let html = "";
     if (candidates.length === 0) {
-      html += "약 이름 후보를 자동으로 뽑지 못했어요. 아래 '읽은 내용'에서 약 이름을 보고 직접 검색해 주세요.<br><br>";
+      ocrStatus.textContent =
+        "약 이름을 찾지 못했어요. 사진을 더 크고 또렷하게 다시 찍거나 아래에서 직접 검색해 주세요.";
     } else {
-      html += "사진에서 이런 약 이름을 읽었어요. 맞는 것을 눌러 추가하세요:<br>" +
+      ocrStatus.innerHTML =
+        "사진에서 이런 약을 찾았어요. 맞는 것을 눌러 추가하세요:<br>" +
         candidates.map(n =>
           `<button class="ocr-suggest" data-name="${encodeURIComponent(n)}">＋ ${n}</button>`
-        ).join(" ") + "<br><br>";
+        ).join(" ");
     }
-
-    // ★ 디버그: OCR이 실제로 읽은 원본 텍스트를 보여준다
-    html += `<details style="margin-top:8px">
-      <summary style="cursor:pointer;color:#888">🔍 사진에서 읽은 전체 내용 보기</summary>
-      <pre style="white-space:pre-wrap;font-size:.8rem;background:#f0f0f0;padding:10px;border-radius:8px;margin-top:6px">${text.replace(/</g,"&lt;")}</pre>
-    </details>`;
-
-    ocrStatus.innerHTML = html;
   } catch (err) {
     ocrStatus.textContent = "사진 인식에 실패했어요. 다시 시도해 주세요.";
   }
