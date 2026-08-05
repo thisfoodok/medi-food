@@ -1,0 +1,11 @@
+{
+  "name": "이거 먹어도 돼?",
+  "short_name": "이거먹어도돼",
+  "description": "약과 함께 먹으면 좋은 음식과 피해야 할 음식을 알려주는 도우미",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f6f8",
+  "theme_color": "#3b82f6",
+  "lang": "ko"
+}
