@@ -1,4 +1,5 @@
-const selectedProducts = new Set();
+// 사용자가 확정한 약: { label: 약봉투에 적힌 이름, ingredients: [성분...] }
+const selectedDrugs = [];
 
 const input = document.getElementById('searchInput');
 const suggestionsEl = document.getElementById('suggestions');
@@ -7,7 +8,7 @@ const resultsEl = document.getElementById('results');
 const photoInput = document.getElementById('photoInput');
 const ocrStatus = document.getElementById('ocrStatus');
 
-// ── 검색 입력 ──
+// ── 직접 검색 입력 ──
 input.addEventListener('input', () => {
   const matches = searchProducts(input.value);
   suggestionsEl.innerHTML = matches
@@ -17,10 +18,9 @@ input.addEventListener('input', () => {
 suggestionsEl.addEventListener('click', (e) => {
   const li = e.target.closest('li');
   if (!li) return;
-  selectedProducts.add(li.dataset.name);
+  addDrug(li.dataset.name);
   input.value = '';
   suggestionsEl.innerHTML = '';
-  render();
 });
 
 // ── 약봉투 촬영/업로드 → OCR ──
@@ -33,17 +33,17 @@ photoInput.addEventListener('change', async () => {
     const text = await runOCR(file, (p) => {
       ocrStatus.textContent = `사진을 읽는 중… (${p}%)`;
     });
-    const found = extractProductsFromText(text); // 상품명 목록
+    const candidates = extractDrugNameCandidates(text);
 
-    if (found.length === 0) {
+    if (candidates.length === 0) {
       ocrStatus.textContent =
-        "약 이름을 찾지 못했어요. 사진을 다시 찍거나 아래에서 직접 검색해 주세요.";
+        "약 이름을 찾지 못했어요. 사진을 더 크고 또렷하게 다시 찍거나 아래에서 직접 검색해 주세요.";
     } else {
-      // ★ 사용자가 사진에서 본 '상품명' 그대로 보여주고 확인받는다
+      // ★ 약봉투에 적힌 이름 그대로 보여주고 확인받는다
       ocrStatus.innerHTML =
-        "사진에서 이 약들을 찾았어요. 맞는 약을 눌러 추가하세요:<br>" +
-        found.map(n =>
-          `<button class="ocr-suggest" data-name="${n}">＋ ${n}</button>`
+        "사진에서 이런 약 이름을 읽었어요. 맞는 것을 눌러 추가하세요:<br>" +
+        candidates.map(n =>
+          `<button class="ocr-suggest" data-name="${encodeURIComponent(n)}">＋ ${n}</button>`
         ).join(" ");
     }
   } catch (err) {
@@ -52,55 +52,71 @@ photoInput.addEventListener('change', async () => {
   photoInput.value = "";
 });
 
-// OCR이 제안한 '상품명'을 사용자가 눌러서 확정
+// OCR이 읽은 이름을 사용자가 눌러서 확정
 ocrStatus.addEventListener('click', (e) => {
   const btn = e.target.closest('.ocr-suggest');
   if (!btn) return;
-  selectedProducts.add(btn.dataset.name);
+  const name = decodeURIComponent(btn.dataset.name);
+  addDrug(name);
   btn.disabled = true;
-  render();
 });
 
-// ── 약 제거 ──
-function removeProduct(name) {
-  selectedProducts.delete(name);
+// ── 약 추가 (이름 → 성분 연결 시도) ──
+function addDrug(rawName) {
+  // 이미 추가된 이름이면 무시
+  if (selectedDrugs.some(d => d.label === rawName)) return;
+  const ingredients = resolveIngredients(rawName);
+  selectedDrugs.push({ label: rawName, ingredients });
+  render();
+}
+
+function removeDrug(index) {
+  selectedDrugs.splice(index, 1);
   render();
 }
 
 // ── 결과 렌더링 ──
 function render() {
-  // 선택된 약은 '상품명'으로 표시
-  selectedEl.innerHTML = [...selectedProducts]
-    .map(n => `<span class="chip">${n}<button onclick="removeProduct('${n}')">×</button></span>`)
+  // 선택된 약: 약봉투에 적힌 이름 그대로 칩으로 표시
+  selectedEl.innerHTML = selectedDrugs
+    .map((d, i) => `<span class="chip">${d.label}<button onclick="removeDrug(${i})">×</button></span>`)
     .join('');
 
-  // 성분 집합 만들기 (상품명 → 성분)
-  const ingredients = new Set();
-  selectedProducts.forEach(p =>
-    productToIngredients(p).forEach(i => ingredients.add(i)));
+  if (selectedDrugs.length === 0) { resultsEl.innerHTML = ''; return; }
 
-  if (ingredients.size === 0) { resultsEl.innerHTML = ''; return; }
-
-  resultsEl.innerHTML = [...ingredients].map(ing => {
-    const info = getInteraction(ing);
-    if (!info) {
-      return `<div class="card"><h2>${ing}</h2>
-        <p class="empty">이 약에 대한 음식 궁합 정보가 아직 없어요. (확인 불가)</p></div>`;
+  const cards = selectedDrugs.map((d) => {
+    // 성분을 못 찾은 경우
+    if (d.ingredients.length === 0) {
+      return `<div class="card">
+        <h2>${d.label}</h2>
+        <p class="empty">이 약에 대한 음식 궁합 정보가 아직 없어요. (확인 불가)</p>
+      </div>`;
     }
-    const avoid = info.avoid?.map(f =>
-      `<div class="food-item avoid ${f.severity}">
-         <div class="food">🚫 ${f.food}</div>
-         <div class="reason">${f.reason}</div></div>`).join('') || '';
-    const good = info.good?.map(f =>
-      `<div class="food-item good">
-         <div class="food">✅ ${f.food}</div>
-         <div class="reason">${f.reason}</div></div>`).join('') || '';
-    return `<div class="card">
-      <h2>${info.displayName}</h2>
-      ${avoid}${good}
-      <div class="source">출처: ${info.source} (${info.lastUpdated})</div>
-    </div>`;
+    // 성분별 카드
+    return d.ingredients.map((ing) => {
+      const info = getInteraction(ing);
+      if (!info) {
+        return `<div class="card"><h2>${d.label}</h2>
+          <p class="empty">이 약에 대한 음식 궁합 정보가 아직 없어요. (확인 불가)</p></div>`;
+      }
+      const avoid = info.avoid?.map(f =>
+        `<div class="food-item avoid ${f.severity}">
+           <div class="food">🚫 ${f.food}</div>
+           <div class="reason">${f.reason}</div></div>`).join('') || '';
+      const good = info.good?.map(f =>
+        `<div class="food-item good">
+           <div class="food">✅ ${f.food}</div>
+           <div class="reason">${f.reason}</div></div>`).join('') || '';
+      return `<div class="card">
+        <h2>${d.label}</h2>
+        <p class="ingredient-note">→ ${info.displayName}</p>
+        ${avoid}${good}
+        <div class="source">출처: ${info.source} (${info.lastUpdated})</div>
+      </div>`;
+    }).join('');
   }).join('');
+
+  resultsEl.innerHTML = cards;
 }
 
 // 시작
