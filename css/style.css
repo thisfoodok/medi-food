@@ -50,3 +50,28 @@ h1 { font-size: 1.5rem; margin-bottom: 4px; }
   background: #fffbe6; border-top: 1px solid #f0e6b0;
   padding: 10px 16px; font-size: .78rem; color: #6b5d1f; text-align: center;
 }
+.scan-box { margin-bottom: 16px; }
+.scan-btn {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  background: #3b82f6;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.scan-btn:active { background: #2563eb; }
+.ocr-status { font-size: .9rem; color: #444; margin-top: 10px; }
+.ocr-suggest {
+  background: #eef4ff;
+  border: 1px solid #3b82f6;
+  color: #2563eb;
+  border-radius: 20px;
+  padding: 6px 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+  font-size: .9rem;
+}
+.ocr-suggest:disabled { opacity: .4; cursor: default; }
