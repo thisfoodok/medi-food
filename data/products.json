@@ -8,6 +8,7 @@
   "애드빌": ["ibuprofen"],
   "아스피린": ["aspirin"],
   "아스피린프로텍트정100mg": ["aspirin"],
+  "경동아스피린장용정": ["aspirin"],
   "쿠마딘": ["warfarin"],
   "와파린": ["warfarin"],
   "리피토": ["atorvastatin"],
@@ -20,6 +21,8 @@
   "메트포르민": ["metformin"],
   "다이아벡스": ["metformin"],
   "글루코파지": ["metformin"],
+  "슈가메트서방정": ["metformin"],
+  "듀비메트서방정": ["metformin"],
   "레보티록신": ["levothyroxine"],
   "씬지로이드": ["levothyroxine"],
   "신지로이드": ["levothyroxine"],
@@ -32,5 +35,8 @@
   "설트랄린": ["sertraline"],
   "졸로푸트": ["sertraline"],
   "프레드니솔론": ["prednisolone"],
-  "소론도": ["prednisolone"]
+  "소론도": ["prednisolone"],
+  "알마겔정": ["almagate"],
+  "애니코프캡슐": ["theobromine"],
+  "다이크로짇정": ["hydrochlorothiazide"]
 }
