@@ -10,20 +10,20 @@
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2026-01"
   },
-  "warfarin": {
-    "displayName": "와파린 (항응고제)",
+  "ibuprofen": {
+    "displayName": "이부프로펜 (소염진통제)",
     "avoid": [
-      { "food": "녹색 잎채소 (시금치·케일 등)", "reason": "비타민K가 많아 약효를 떨어뜨릴 수 있어요.", "severity": "high" },
-      { "food": "자몽·자몽주스", "reason": "약물 대사에 영향을 줘 효과가 달라질 수 있어요.", "severity": "medium" }
+      { "food": "술 (알코올)", "reason": "위장 출혈 위험이 커질 수 있어요.", "severity": "high" },
+      { "food": "빈속(공복) 복용", "reason": "위벽을 자극해 속쓰림·위염 위험이 있어요.", "severity": "medium" }
     ],
     "good": [
-      { "food": "일정한 식단 유지", "reason": "채소 섭취량을 갑자기 바꾸지 않는 게 중요해요." }
+      { "food": "식후 복용 / 음식과 함께", "reason": "위 자극을 줄이는 데 도움이 돼요." }
     ],
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2026-01"
   },
   "aspirin": {
-    "displayName": "아스피린 (항혈소판제)",
+    "displayName": "아스피린 (항혈소판제·소염진통제)",
     "avoid": [
       { "food": "술 (알코올)", "reason": "위장 출혈 위험이 커질 수 있어요.", "severity": "high" }
     ],
@@ -33,13 +33,150 @@
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2026-01"
   },
+  "warfarin": {
+    "displayName": "와파린 (항응고제)",
+    "avoid": [
+      { "food": "녹색 잎채소 (시금치·케일·브로콜리 등)", "reason": "비타민K가 많아 약효를 떨어뜨릴 수 있어요.", "severity": "high" },
+      { "food": "자몽·자몽주스", "reason": "약물 대사에 영향을 줘 효과가 달라질 수 있어요.", "severity": "medium" },
+      { "food": "홍삼·인삼, 은행 등 건강기능식품", "reason": "출혈 위험이나 약효 변화를 일으킬 수 있어요.", "severity": "medium" }
+    ],
+    "good": [
+      { "food": "일정한 식단 유지", "reason": "채소 섭취량을 갑자기 늘리거나 줄이지 않는 게 중요해요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
   "atorvastatin": {
     "displayName": "아토르바스타틴 (고지혈증약)",
     "avoid": [
-      { "food": "자몽·자몽주스", "reason": "약물 농도를 높여 부작용 위험이 커질 수 있어요.", "severity": "high" }
+      { "food": "자몽·자몽주스", "reason": "약물 농도를 높여 근육통 등 부작용 위험이 커질 수 있어요.", "severity": "high" }
     ],
     "good": [
-      { "food": "저지방 식단", "reason": "약의 목적인 콜레스테롤 관리에 도움이 돼요." }
+      { "food": "저지방·채소 위주 식단", "reason": "약의 목적인 콜레스테롤 관리에 도움이 돼요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "simvastatin": {
+    "displayName": "심바스타틴 (고지혈증약)",
+    "avoid": [
+      { "food": "자몽·자몽주스", "reason": "약물 농도를 크게 높여 근육 손상 위험이 커질 수 있어요.", "severity": "high" }
+    ],
+    "good": [
+      { "food": "저지방·채소 위주 식단", "reason": "콜레스테롤 관리에 도움이 돼요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "amlodipine": {
+    "displayName": "암로디핀 (혈압약·칼슘차단제)",
+    "avoid": [
+      { "food": "자몽·자몽주스", "reason": "약물 농도를 높여 저혈압·어지럼 위험이 커질 수 있어요.", "severity": "medium" }
+    ],
+    "good": [
+      { "food": "저염식 (싱겁게 먹기)", "reason": "혈압 관리에 도움이 돼요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "lisinopril": {
+    "displayName": "리시노프릴 (혈압약·ACE억제제)",
+    "avoid": [
+      { "food": "바나나·오렌지 등 칼륨 많은 음식 과다 섭취", "reason": "혈중 칼륨이 지나치게 올라갈 수 있어요.", "severity": "medium" },
+      { "food": "저염 소금(칼륨 대체 소금)", "reason": "칼륨 과다로 이어질 수 있어요.", "severity": "medium" }
+    ],
+    "good": [
+      { "food": "저염식 (싱겁게 먹기)", "reason": "혈압 관리에 도움이 돼요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "metformin": {
+    "displayName": "메트포르민 (당뇨약)",
+    "avoid": [
+      { "food": "술 (알코올)", "reason": "드물지만 젖산산증 위험이 있어 과음은 피해야 해요.", "severity": "high" }
+    ],
+    "good": [
+      { "food": "식사와 함께 복용", "reason": "속쓰림 등 위장 부작용을 줄이는 데 도움이 돼요." },
+      { "food": "규칙적인 식사 시간", "reason": "혈당을 일정하게 유지하는 데 좋아요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "levothyroxine": {
+    "displayName": "레보티록신 (갑상선호르몬제)",
+    "avoid": [
+      { "food": "우유·유제품, 칼슘·철분 보충제", "reason": "약 흡수를 방해해 효과가 떨어질 수 있어요.", "severity": "medium" },
+      { "food": "콩(대두) 식품, 커피", "reason": "복용 직후 함께 먹으면 흡수를 줄일 수 있어요.", "severity": "medium" }
+    ],
+    "good": [
+      { "food": "아침 공복에 물과 복용 (30분 뒤 식사)", "reason": "흡수가 가장 잘 되는 방법이에요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "amoxicillin": {
+    "displayName": "아목시실린 (항생제)",
+    "avoid": [],
+    "good": [
+      { "food": "충분한 물", "reason": "약을 잘 넘기고 흡수를 돕는 데 좋아요." },
+      { "food": "정해진 시간에 끝까지 복용", "reason": "항생제는 임의로 중단하지 않는 게 중요해요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "ciprofloxacin": {
+    "displayName": "시프로플록사신 (항생제)",
+    "avoid": [
+      { "food": "우유·유제품, 칼슘·철분·아연 보충제", "reason": "약 흡수를 크게 방해해 효과가 떨어질 수 있어요.", "severity": "high" },
+      { "food": "카페인(커피·에너지음료) 과다", "reason": "카페인 효과가 오래가 두근거림·불면이 생길 수 있어요.", "severity": "medium" }
+    ],
+    "good": [
+      { "food": "충분한 물", "reason": "신장을 통한 배출을 도와요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "doxycycline": {
+    "displayName": "독시사이클린 (항생제)",
+    "avoid": [
+      { "food": "우유·유제품, 칼슘·철분 보충제", "reason": "약 흡수를 방해해 효과가 떨어질 수 있어요.", "severity": "high" }
+    ],
+    "good": [
+      { "food": "충분한 물과 함께, 앉거나 선 자세로 복용", "reason": "식도 자극을 줄이는 데 도움이 돼요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "sildenafil": {
+    "displayName": "실데나필 (발기부전·폐고혈압약)",
+    "avoid": [
+      { "food": "자몽·자몽주스", "reason": "약물 농도를 높여 두통·저혈압 등 부작용 위험이 커질 수 있어요.", "severity": "medium" },
+      { "food": "기름진 음식 직후 복용", "reason": "약효 발현이 늦어질 수 있어요.", "severity": "low" }
+    ],
+    "good": [],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "sertraline": {
+    "displayName": "설트랄린 (항우울제·SSRI)",
+    "avoid": [
+      { "food": "술 (알코올)", "reason": "졸음·어지럼이 심해지고 우울 증상에 악영향을 줄 수 있어요.", "severity": "high" }
+    ],
+    "good": [
+      { "food": "매일 같은 시간에 복용", "reason": "효과를 일정하게 유지하는 데 도움이 돼요." }
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2026-01"
+  },
+  "prednisolone": {
+    "displayName": "프레드니솔론 (스테로이드)",
+    "avoid": [
+      { "food": "짠 음식 (고나트륨)", "reason": "몸이 붓고 혈압이 오를 수 있어요.", "severity": "medium" },
+      { "food": "빈속(공복) 복용", "reason": "위 자극으로 속쓰림이 생길 수 있어요.", "severity": "medium" }
+    ],
+    "good": [
+      { "food": "식후 복용, 칼슘·비타민D가 있는 음식", "reason": "위 부담을 줄이고 뼈 건강 유지에 도움이 돼요." }
     ],
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2026-01"
