@@ -666,7 +666,7 @@
     ],
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2016-09-30"
-  ],
+   },
   "telmisartan": {
     "displayName": "telmisartan",
     "avoid": [
@@ -688,7 +688,7 @@
     "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2016-09-30"
-  },
+ },
   "valsartan": {
     "displayName": "valsartan",
     "avoid": [
@@ -950,7 +950,7 @@
     "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2016-09-30"
-   ],
+  },
   "levothyroxine": {
     "displayName": "레보티록신",
     "avoid": [
@@ -964,7 +964,7 @@
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2016-09-30"
 
-    ],
+     },
   "rosuvastatin": {
     "displayName": "로수바스타틴",
     "avoid": [
