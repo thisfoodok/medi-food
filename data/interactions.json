@@ -965,6 +965,49 @@
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2016-09-30"
 
+    ],
+  "rosuvastatin": {
+    "displayName": "로수바스타틴",
+    "avoid": [
+      {"food": "다량의 자몽주스", "reason": "많은 양의 자몽쥬스는 스타틴의 체내 농도를 높여서 부작용을 일으킬 수 있습니다.", "severity": "caution"},
+      {"food": "알코올", "reason": "이 계통의 약물들은 부작용으로 간 손상이 유발될 수 있으므로 음주는 피해야 합니다.", "severity": "avoid"}
+    ],
+    "good": [],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2016-09-30"
+  },
+  "fluvastatin": {
+    "displayName": "플루바스타틴",
+    "avoid": [
+      {"food": "알코올", "reason": "이 계통의 약물들은 부작용으로 간 손상이 유발될 수 있으므로 음주는 피해야 합니다.", "severity": "avoid"}
+    ],
+    "good": [],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2016-09-30"
+  },
+  "lovastatin": {
+    "displayName": "로바스타틴",
+    "avoid": [
+      {"food": "다량의 자몽주스", "reason": "많은 양의 자몽쥬스는 스타틴의 체내 농도를 높여서 부작용을 일으킬 수 있습니다.", "severity": "caution"},
+      {"food": "알코올", "reason": "이 계통의 약물들은 부작용으로 간 손상이 유발될 수 있으므로 음주는 피해야 합니다.", "severity": "avoid"}
+    ],
+    "good": [
+      {"food": "저녁 식사와 함께", "reason": "로바스타틴은 저녁 식사와 같이 복용하면 더 좋은 효과를 보입니다."}
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2016-09-30"
+  },
+  "pravastatin": {
+    "displayName": "프라바스타틴",
+    "avoid": [
+      {"food": "알코올", "reason": "이 계통의 약물들은 부작용으로 간 손상이 유발될 수 있으므로 음주는 피해야 합니다.", "severity": "avoid"}
+    ],
+    "good": [
+      {"food": "저녁 식후 복용", "reason": "프라바스타틴은 식사와 함께 복용하면 흡수가 감소되므로 저녁 식후 투여가 보다 효과적입니다."}
+    ],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2016-09-30"
+
   }
 }
 
