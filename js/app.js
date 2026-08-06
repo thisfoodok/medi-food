@@ -1,5 +1,8 @@
 const selectedDrugs = [];
 
+const REQUEST_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbzqfCSWn6-xu0T6I1TpvaHdNId15cc1JgBpWSdswit3ewZUGRT9NiGewACChY9PVUoIfw/exec";
+
 const input = document.getElementById('searchInput');
 const suggestionsEl = document.getElementById('suggestions');
 const selectedEl = document.getElementById('selected');
@@ -9,18 +12,59 @@ const ocrStatus = document.getElementById('ocrStatus');
 
 // ── 검색 입력 (별칭까지 매칭하되, 결과 목록엔 상품명만 표시) ──
 input.addEventListener('input', () => {
-  const matches = searchProducts(input.value, 8);
-  suggestionsEl.innerHTML = matches
-    .map(name => `<li data-name="${encodeURIComponent(name)}">${name}</li>`).join('');
+  const query = input.value.trim();
+  const matches = searchProducts(query, 8);
+
+  if (matches.length > 0) {
+    suggestionsEl.innerHTML = matches
+      .map(name => `<li data-name="${encodeURIComponent(name)}">${name}</li>`).join('');
+  } else if (query.length >= 2) {
+    // 검색어는 있는데 결과 0건 → 안내 + 추가 요청 버튼
+    suggestionsEl.innerHTML =
+      `<li class="no-result">` +
+      `‘${query}’을(를) 찾지 못했어요. 철자를 확인하거나 약봉투 사진으로 시도해 보세요.<br>` +
+      `<button class="request-btn" data-name="${encodeURIComponent(query)}">＋ 이 약 추가 요청하기</button>` +
+      `<span class="request-note">입력하신 약 이름이 데이터 개선을 위해 익명으로 전송됩니다.</span>` +
+      `</li>`;
+  } else {
+    suggestionsEl.innerHTML = '';
+  }
 });
 
 suggestionsEl.addEventListener('click', (e) => {
+  // 추가 요청 버튼 클릭
+  const reqBtn = e.target.closest('.request-btn');
+  if (reqBtn) {
+    requestDrug(decodeURIComponent(reqBtn.dataset.name), reqBtn);
+    return;
+  }
+  // 일반 제안 선택
   const li = e.target.closest('li');
-  if (!li) return;
+  if (!li || li.classList.contains('no-result')) return;
   addDrug(decodeURIComponent(li.dataset.name));
   input.value = '';
   suggestionsEl.innerHTML = '';
 });
+
+// ── 없는 약 추가 요청 (약 이름만 전송) ──
+async function requestDrug(name, btn) {
+  if (!name) return;
+  btn.disabled = true;
+  btn.textContent = "요청을 보내는 중…";
+  try {
+    await fetch(REQUEST_ENDPOINT, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ name: name })
+    });
+    btn.textContent = "요청이 접수되었어요. 감사합니다!";
+  } catch (err) {
+    btn.disabled = false;
+    btn.textContent = "＋ 이 약 추가 요청하기";
+    alert("요청 전송에 실패했어요. 잠시 후 다시 시도해 주세요.");
+  }
+}
 
 // ── 약봉투 사진 → OCR ──
 photoInput.addEventListener('change', async () => {
@@ -33,7 +77,6 @@ photoInput.addEventListener('change', async () => {
       ocrStatus.textContent = `사진을 읽는 중… (${p}%)`;
     });
 
-    // OCR에서 찾은 이름(상품명 또는 별칭)을 정식 상품명으로 변환 + 중복 제거
     const rawFound = extractDrugNames(text);
     const found = [];
     for (const n of rawFound) {
