@@ -17,5 +17,18 @@
   "소론도": { "ingredients": ["prednisolone"], "aliases": ["프레드니솔론"] },
   "알마겔정": { "ingredients": ["almagate"], "aliases": [] },
   "애니코프캡슐300mg": { "ingredients": ["theobromine"], "aliases": ["애니코프캡슐"] },
-  "다이크로짇정": { "ingredients": ["hydrochlorothiazide"], "aliases": [] }
+  "다이크로짇정": { "ingredients": ["hydrochlorothiazide"], "aliases": [] },
+  "넥시움": {"ingredients": ["esomeprazole"], "aliases": ["에소메졸", "에스오메프라졸"]},
+  "판토록": {"ingredients": ["pantoprazole"], "aliases": ["판토프라졸"]},
+  "란스톤": {"ingredients": ["lansoprazole"], "aliases": ["란소프라졸"]},
+  "덱실란트": {"ingredients": ["dexlansoprazole"], "aliases": ["덱스란소프라졸"]},
+  "라비에트": {"ingredients": ["rabeprazole"], "aliases": ["라베프라졸", "파리에트"]},
+  "오엠피정": {"ingredients": ["omeprazole"], "aliases": ["오메프라졸"]},
+  "가스터": {"ingredients": ["famotidine"], "aliases": ["파모티딘"]},
+  "타가메트": {"ingredients": ["cimetidine"], "aliases": ["시메티딘"]},
+  "자니틴": {"ingredients": ["nizatidine"], "aliases": ["니자티딘"]},
+  "잔탁": {"ingredients": ["ranitidine"], "aliases": ["라니티딘"]},
+  "무코스타": {"ingredients": ["rebamipide"], "aliases": ["레바미피드"]},
+  "싸이토텍": {"ingredients": ["misoprostol"], "aliases": ["미소프로스톨"]}
+
 }
