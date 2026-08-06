@@ -668,7 +668,7 @@
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2016-09-30"
   ],
-  ,"telmisartan": {
+  "telmisartan": {
     "displayName": "telmisartan",
     "avoid": [
       { "food": "칼륨이 많은 식품(매실, 바나나, 오렌지, 녹황색 채소, 저염소금 등 칼륨 함유 식염 대용물)", "reason": "ACE 저해제와 ARB는 체내 칼륨을 증가시켜 고칼륨혈증을 일으킬 수 있습니다. 많은 양의 칼륨은 부정맥과 심계항진을 일으킬 수 있어 섭취를 피해야 합니다.", "severity": "high" },
