@@ -7,20 +7,17 @@ const resultsEl = document.getElementById('results');
 const photoInput = document.getElementById('photoInput');
 const ocrStatus = document.getElementById('ocrStatus');
 
-// ── 검색 입력 ──
+// ── 검색 입력 (별칭까지 매칭하되, 결과 목록엔 상품명만 표시) ──
 input.addEventListener('input', () => {
-  const q = input.value.replace(/\s+/g, '');
-  const matches = q
-    ? Object.keys(DB.products).filter(n => n.replace(/\s+/g, '').includes(q)).slice(0, 8)
-    : [];
+  const matches = searchProducts(input.value, 8);
   suggestionsEl.innerHTML = matches
-    .map(name => `<li data-name="${name}">${name}</li>`).join('');
+    .map(name => `<li data-name="${encodeURIComponent(name)}">${name}</li>`).join('');
 });
 
 suggestionsEl.addEventListener('click', (e) => {
   const li = e.target.closest('li');
   if (!li) return;
-  addDrug(li.dataset.name);
+  addDrug(decodeURIComponent(li.dataset.name));
   input.value = '';
   suggestionsEl.innerHTML = '';
 });
@@ -35,7 +32,14 @@ photoInput.addEventListener('change', async () => {
     const text = await runOCR(file, (p) => {
       ocrStatus.textContent = `사진을 읽는 중… (${p}%)`;
     });
-    const found = extractDrugNames(text);
+
+    // OCR에서 찾은 이름(상품명 또는 별칭)을 정식 상품명으로 변환 + 중복 제거
+    const rawFound = extractDrugNames(text);
+    const found = [];
+    for (const n of rawFound) {
+      const product = resolveToProduct(n);
+      if (product && !found.includes(product)) found.push(product);
+    }
 
     if (found.length === 0) {
       ocrStatus.textContent =
@@ -60,7 +64,7 @@ ocrStatus.addEventListener('click', (e) => {
   btn.disabled = true;
 });
 
-// ── 약 추가/제거 ──
+// ── 약 추가/제거 (항상 정식 상품명만 저장) ──
 function addDrug(name) {
   if (selectedDrugs.includes(name)) return;
   selectedDrugs.push(name);
@@ -89,7 +93,7 @@ function render() {
 
     const body = ingredients.map((ing) => {
       const info = getInteraction(ing);
-      if (!info) {
+      if (!info || ((!info.avoid || info.avoid.length === 0) && (!info.good || info.good.length === 0))) {
         return `<p class="empty">이 약에 대한 음식 궁합 정보가 아직 없어요. (확인 불가)</p>`;
       }
       const avoid = info.avoid?.map(f =>
