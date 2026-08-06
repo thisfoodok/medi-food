@@ -188,7 +188,6 @@
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2016-09-30"
    },
-  {
   "acetaminophen": {
     "displayName": "acetaminophen",
     "avoid": [
@@ -479,7 +478,7 @@
     "source": "식약처 약과 음식 상호작용 복약안내서",
     "lastUpdated": "2016-09-30"
     },
-  ,"aceclofenac": {
+  "aceclofenac": {
     "displayName": "aceclofenac",
     "avoid": [
       { "food": "술(알코올)", "reason": "매일 3잔 이상 음주 시 위출혈을 일으킬 수 있으며 간손상과 위출혈을 악화시킬 수 있습니다. 복용 전 반드시 의사나 약사와 상담하세요.", "severity": "high" },
