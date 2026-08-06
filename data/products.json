@@ -29,6 +29,7 @@
   "자니틴": {"ingredients": ["nizatidine"], "aliases": ["니자티딘"]},
   "잔탁": {"ingredients": ["ranitidine"], "aliases": ["라니티딘"]},
   "무코스타": {"ingredients": ["rebamipide"], "aliases": ["레바미피드"]},
-  "싸이토텍": {"ingredients": ["misoprostol"], "aliases": ["미소프로스톨"]}
+  "싸이토텍": {"ingredients": ["misoprostol"], "aliases": ["미소프로스톨"]},
+  "트윈스타": {"ingredients": ["telmisartan", "amlodipine"], "aliases": []}
 
 }
