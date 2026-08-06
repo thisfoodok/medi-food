@@ -1,227 +1,191 @@
 {
   "acetaminophen": {
-    "displayName": "아세트아미노펜 (해열진통제)",
+    "displayName": "acetaminophen",
     "avoid": [
-      { "food": "술 (알코올)", "reason": "간에 부담을 크게 늘려 손상 위험이 높아져요.", "severity": "high" }
+      { "food": "술(알코올)", "reason": "매일 3잔 이상 음주 시 위장출혈과 간에 손상을 일으킬 수 있으며, 심각한 간손상을 초래할 수 있습니다. 복용 전 의사나 약사와 상담하세요.", "severity": "high" }
     ],
-    "good": [
-      { "food": "충분한 물", "reason": "약 성분 대사와 배출에 도움이 돼요." }
-    ],
+    "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "ibuprofen": {
-    "displayName": "이부프로펜 (소염진통제)",
+    "displayName": "ibuprofen",
     "avoid": [
-      { "food": "술 (알코올)", "reason": "위장 출혈 위험이 커질 수 있어요.", "severity": "high" },
-      { "food": "빈속(공복) 복용", "reason": "위벽을 자극해 속쓰림·위염 위험이 있어요.", "severity": "medium" }
+      { "food": "술(알코올)", "reason": "매일 3잔 이상 음주 시 위출혈을 일으킬 수 있으며 간손상과 위출혈을 악화시킬 수 있습니다. 복용 전 반드시 의사나 약사와 상담하세요.", "severity": "high" },
+      { "food": "카페인 함유 식품(커피, 드링크류)", "reason": "복합진통제에는 카페인이 함유된 경우가 많아, 카페인 음료를 너무 많이 마시면 카페인 과잉 상태가 되어 가슴 두근거림 등의 증상이 나타날 수 있습니다.", "severity": "low" }
     ],
     "good": [
-      { "food": "식후 복용 / 음식과 함께", "reason": "위 자극을 줄이는 데 도움이 돼요." }
+      { "food": "음식 또는 우유", "reason": "이 약은 위를 자극할 수 있으므로, 위장장애가 일어날 때에는 음식 또는 우유와 함께 복용하세요." }
     ],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "aspirin": {
-    "displayName": "아스피린 (항혈소판제·소염진통제)",
+    "displayName": "aspirin",
     "avoid": [
-      { "food": "술 (알코올)", "reason": "위장 출혈 위험이 커질 수 있어요.", "severity": "high" }
+      { "food": "술(알코올)", "reason": "매일 3잔 이상 음주 시 위출혈을 일으킬 수 있으며 간손상과 위출혈을 악화시킬 수 있습니다. 복용 전 반드시 의사나 약사와 상담하세요.", "severity": "high" },
+      { "food": "카페인 함유 식품(커피, 드링크류)", "reason": "복합진통제에는 카페인이 함유된 경우가 많아, 카페인 음료를 너무 많이 마시면 카페인 과잉 상태가 되어 가슴 두근거림 등의 증상이 나타날 수 있습니다.", "severity": "low" }
     ],
     "good": [
-      { "food": "식후 복용", "reason": "위 자극을 줄이는 데 도움이 돼요." }
+      { "food": "음식 또는 우유", "reason": "이 약은 위를 자극할 수 있으므로, 위장장애가 일어날 때에는 음식 또는 우유와 함께 복용하세요." }
     ],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "warfarin": {
-    "displayName": "와파린 (항응고제)",
+    "displayName": "warfarin",
     "avoid": [
-      { "food": "녹색 잎채소 (시금치·케일·브로콜리 등)", "reason": "비타민K가 많아 약효를 떨어뜨릴 수 있어요.", "severity": "high" },
-      { "food": "자몽·자몽주스", "reason": "약물 대사에 영향을 줘 효과가 달라질 수 있어요.", "severity": "medium" },
-      { "food": "홍삼·인삼, 은행 등 건강기능식품", "reason": "출혈 위험이나 약효 변화를 일으킬 수 있어요.", "severity": "medium" }
+      { "food": "비타민 K가 많은 식품(녹색 채소, 해조류: 브로콜리, 양배추, 케일, 시금치, 아스파라거스, 무청, 소간, 녹차, 콩류, 김 등)", "reason": "비타민 K는 피가 잘 응고되도록 하여 와파린 작용을 방해할 수 있습니다. 갑자기 많이 먹지 말고 섭취량을 일정하게 유지하세요. 조리해도 비타민 K 함량은 크게 변하지 않습니다.", "severity": "high" },
+      { "food": "크랜베리 쥬스 및 크랜베리 함유 식품", "reason": "와파린의 효능에 영향을 주므로 섭취하지 않도록 합니다.", "severity": "medium" },
+      { "food": "고용량 비타민 E(400 IU 이상)", "reason": "혈액 응고시간이 연장되어 출혈 위험성이 증가됩니다. 복용하려면 의사 또는 약사와 상의하세요.", "severity": "medium" },
+      { "food": "양파, 마늘, 생강, 은행잎 제제, 글루코사민, 인삼, 은행, 당귀, 백지, 감초, 정향, 동규자", "reason": "와파린과 병용하면 출혈 위험이 증가될 수 있으므로 섭취하지 않도록 합니다.", "severity": "medium" },
+      { "food": "술(알코올)", "reason": "와파린 대사에 영향을 미쳐 출혈 위험성을 증가시키므로 음주를 삼가야 하며, 음주를 했거나 남용했을 때에는 의사나 약사와 상담하세요.", "severity": "high" }
     ],
-    "good": [
-      { "food": "일정한 식단 유지", "reason": "채소 섭취량을 갑자기 늘리거나 줄이지 않는 게 중요해요." }
-    ],
+    "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "atorvastatin": {
-    "displayName": "아토르바스타틴 (고지혈증약)",
+    "displayName": "atorvastatin",
     "avoid": [
-      { "food": "자몽·자몽주스", "reason": "약물 농도를 높여 근육통 등 부작용 위험이 커질 수 있어요.", "severity": "high" }
+      { "food": "자몽쥬스(하루 250ml 이상)", "reason": "많은 양의 자몽쥬스는 스타틴의 체내 농도를 높여 부작용을 일으킬 수 있습니다. 하루 250ml 이상 섭취하지 않도록 하세요.", "severity": "medium" },
+      { "food": "술(알코올)", "reason": "이 계통의 약물은 부작용으로 간 손상이 유발될 수 있으므로 음주는 피해야 합니다.", "severity": "medium" }
     ],
-    "good": [
-      { "food": "저지방·채소 위주 식단", "reason": "약의 목적인 콜레스테롤 관리에 도움이 돼요." }
-    ],
+    "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "simvastatin": {
-    "displayName": "심바스타틴 (고지혈증약)",
+    "displayName": "simvastatin",
     "avoid": [
-      { "food": "자몽·자몽주스", "reason": "약물 농도를 크게 높여 근육 손상 위험이 커질 수 있어요.", "severity": "high" }
+      { "food": "자몽쥬스(하루 250ml 이상)", "reason": "많은 양의 자몽쥬스는 스타틴의 체내 농도를 높여 부작용을 일으킬 수 있습니다. 하루 250ml 이상 섭취하지 않도록 하세요.", "severity": "medium" },
+      { "food": "술(알코올)", "reason": "이 계통의 약물은 부작용으로 간 손상이 유발될 수 있으므로 음주는 피해야 합니다.", "severity": "medium" }
     ],
-    "good": [
-      { "food": "저지방·채소 위주 식단", "reason": "콜레스테롤 관리에 도움이 돼요." }
-    ],
+    "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "amlodipine": {
-    "displayName": "암로디핀 (혈압약·칼슘차단제)",
+    "displayName": "amlodipine",
     "avoid": [
-      { "food": "자몽·자몽주스", "reason": "약물 농도를 높여 저혈압·어지럼 위험이 커질 수 있어요.", "severity": "medium" }
+      { "food": "자몽주스(포멜로 포함)", "reason": "함께 복용할 경우 약효가 지나치게 증가하여 독성이 나타날 수 있으므로 함께 복용하지 말고, 적어도 약 복용 2시간 이후에 자몽주스를 마시는 것이 좋습니다.", "severity": "high" }
     ],
-    "good": [
-      { "food": "저염식 (싱겁게 먹기)", "reason": "혈압 관리에 도움이 돼요." }
-    ],
+    "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "lisinopril": {
-    "displayName": "리시노프릴 (혈압약·ACE억제제)",
+    "displayName": "lisinopril",
     "avoid": [
-      { "food": "바나나·오렌지 등 칼륨 많은 음식 과다 섭취", "reason": "혈중 칼륨이 지나치게 올라갈 수 있어요.", "severity": "medium" },
-      { "food": "저염 소금(칼륨 대체 소금)", "reason": "칼륨 과다로 이어질 수 있어요.", "severity": "medium" }
+      { "food": "칼륨이 많은 식품(매실, 바나나, 오렌지, 녹황색 채소, 저염소금 등 칼륨 함유 식염 대용물)", "reason": "ACE 저해제와 ARB는 체내 칼륨을 증가시켜 고칼륨혈증을 일으킬 수 있습니다. 많은 양의 칼륨은 부정맥과 심계항진을 일으킬 수 있어 섭취를 피해야 합니다.", "severity": "high" },
+      { "food": "칼륨보충제", "reason": "칼륨의 체내 농도를 배가시켜 높일 수 있으므로, 섭취 시 의사나 약사에게 알려야 합니다.", "severity": "medium" },
+      { "food": "술(알코올)", "reason": "음주는 이 약의 작용을 상승시킬 수 있으며 기립성 저혈압을 초래할 수 있으므로 주의해야 합니다.", "severity": "medium" }
     ],
-    "good": [
-      { "food": "저염식 (싱겁게 먹기)", "reason": "혈압 관리에 도움이 돼요." }
-    ],
+    "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "metformin": {
-    "displayName": "메트포르민 (당뇨약)",
-    "avoid": [
-      { "food": "술 (알코올)", "reason": "드물지만 젖산산증 위험이 있어 과음은 피해야 해요.", "severity": "high" }
-    ],
-    "good": [
-      { "food": "식사와 함께 복용", "reason": "속쓰림 등 위장 부작용을 줄이는 데 도움이 돼요." },
-      { "food": "규칙적인 식사 시간", "reason": "혈당을 일정하게 유지하는 데 좋아요." }
-    ],
+    "displayName": "metformin",
+    "avoid": [],
+    "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "levothyroxine": {
-    "displayName": "레보티록신 (갑상선호르몬제)",
+    "displayName": "levothyroxine",
     "avoid": [
-      { "food": "우유·유제품, 칼슘·철분 보충제", "reason": "약 흡수를 방해해 효과가 떨어질 수 있어요.", "severity": "medium" },
-      { "food": "콩(대두) 식품, 커피", "reason": "복용 직후 함께 먹으면 흡수를 줄일 수 있어요.", "severity": "medium" }
+      { "food": "칼슘·철 보충제, 콩 식품(콩가루, 목화씨 가루, 호두), 식이섬유", "reason": "레보티록신 흡수를 방해하므로 이 약 복용 후 4시간 뒤에 섭취하도록 권장합니다. 섭취 시 복용량 조절이 필요할 수 있으니 의사에게 알리세요.", "severity": "medium" },
+      { "food": "자몽주스, 커피", "reason": "이 약의 흡수를 지연시켜 기대하는 약효를 얻지 못할 수 있습니다.", "severity": "medium" }
     ],
     "good": [
-      { "food": "아침 공복에 물과 복용 (30분 뒤 식사)", "reason": "흡수가 가장 잘 되는 방법이에요." }
+      { "food": "아침 공복 복용", "reason": "음식은 흡수를 방해하므로 아침 공복에 하루 한 번, 적어도 식사 1시간~1시간 반 전에 복용하도록 합니다." }
     ],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "amoxicillin": {
-    "displayName": "아목시실린 (항생제)",
+    "displayName": "amoxicillin",
     "avoid": [],
-    "good": [
-      { "food": "충분한 물", "reason": "약을 잘 넘기고 흡수를 돕는 데 좋아요." },
-      { "food": "정해진 시간에 끝까지 복용", "reason": "항생제는 임의로 중단하지 않는 게 중요해요." }
-    ],
+    "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "ciprofloxacin": {
-    "displayName": "시프로플록사신 (항생제)",
+    "displayName": "ciprofloxacin",
     "avoid": [
-      { "food": "우유·유제품, 칼슘·철분·아연 보충제", "reason": "약 흡수를 크게 방해해 효과가 떨어질 수 있어요.", "severity": "high" },
-      { "food": "카페인(커피·에너지음료) 과다", "reason": "카페인 효과가 오래가 두근거림·불면이 생길 수 있어요.", "severity": "medium" }
+      { "food": "유제품(우유, 요구르트 등), 무기질 강화 음료(칼슘강화 오렌지주스)", "reason": "이 약은 다가 양이온과 킬레이트 복합체를 형성하여 흡수가 감소될 수 있으므로, 약 투여 전후 2시간 이내에 병용하지 않는 것이 바람직합니다.", "severity": "medium" },
+      { "food": "카페인 함유 음식·음료", "reason": "이 약물이 카페인의 배설을 억제하여 심장 두근거림, 신경 예민, 불면 증상이 나타날 수 있으니 주의해야 합니다.", "severity": "medium" }
     ],
-    "good": [
-      { "food": "충분한 물", "reason": "신장을 통한 배출을 도와요." }
-    ],
+    "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "doxycycline": {
-    "displayName": "독시사이클린 (항생제)",
+    "displayName": "doxycycline",
     "avoid": [
-      { "food": "우유·유제품, 칼슘·철분 보충제", "reason": "약 흡수를 방해해 효과가 떨어질 수 있어요.", "severity": "high" }
+      { "food": "유제품(우유, 치즈, 요거트, 아이스크림 등)", "reason": "약 복용 1시간 전이나 2시간 안에는 유제품을 삼가세요. 성분이 체내에 흡수되지 않고 배출되어 약효가 떨어질 수 있습니다.", "severity": "medium" },
+      { "food": "철 함유 비타민, 제산제", "reason": "함께 복용하면 성분이 흡수되지 않고 배출되어 약효가 떨어지므로, 약 복용 2시간 후에 드시는 것이 좋습니다.", "severity": "medium" },
+      { "food": "술(알코올)", "reason": "이 약의 반감기를 감소시켜 약효 소실을 빨라지게 합니다.", "severity": "medium" }
     ],
     "good": [
-      { "food": "충분한 물과 함께, 앉거나 선 자세로 복용", "reason": "식도 자극을 줄이는 데 도움이 돼요." }
+      { "food": "물 한 잔과 공복 복용", "reason": "식사 1시간 전이나 2시간 후, 즉 공복 상태에 물 한 잔과 함께 복용하세요. 다만 위장장애가 나타날 때에는 음식과 같이 복용하세요." }
     ],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "sildenafil": {
-    "displayName": "실데나필 (발기부전·폐고혈압약)",
-    "avoid": [
-      { "food": "자몽·자몽주스", "reason": "약물 농도를 높여 두통·저혈압 등 부작용 위험이 커질 수 있어요.", "severity": "medium" },
-      { "food": "기름진 음식 직후 복용", "reason": "약효 발현이 늦어질 수 있어요.", "severity": "low" }
-    ],
+    "displayName": "sildenafil",
+    "avoid": [],
     "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "sertraline": {
-    "displayName": "설트랄린 (항우울제·SSRI)",
+    "displayName": "sertraline",
     "avoid": [
-      { "food": "술 (알코올)", "reason": "졸음·어지럼이 심해지고 우울 증상에 악영향을 줄 수 있어요.", "severity": "high" }
+      { "food": "세인트존스워트(St. John's wort)", "reason": "세로토닌 작동성과 대사 저해로 인해 세로토닌 증후군을 일으킬 수 있어 병용을 삼가십시오.", "severity": "high" },
+      { "food": "술(알코올)", "reason": "음주는 이 약의 중추신경 억제효과나 졸음을 배가시켜 심하게 할 수 있으므로 병용하지 않는 것이 좋습니다.", "severity": "medium" }
     ],
-    "good": [
-      { "food": "매일 같은 시간에 복용", "reason": "효과를 일정하게 유지하는 데 도움이 돼요." }
-    ],
+    "good": [],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   },
   "prednisolone": {
-    "displayName": "프레드니솔론 (스테로이드)",
+    "displayName": "prednisolone",
+    "avoid": [],
+    "good": [],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2016-09-30"
+  },
+  "almagate": {
+    "displayName": "almagate",
     "avoid": [
-      { "food": "짠 음식 (고나트륨)", "reason": "몸이 붓고 혈압이 오를 수 있어요.", "severity": "medium" },
-      { "food": "빈속(공복) 복용", "reason": "위 자극으로 속쓰림이 생길 수 있어요.", "severity": "medium" }
+      { "food": "오렌지 주스 등 과일 주스, 콜라", "reason": "알루미늄이 든 제산제와 오렌지 주스를 함께 마시면 알루미늄이 체내로 흡수될 수 있습니다. 또한 과일 주스·콜라와 함께 복용하면 위의 산도를 높여 약효를 제대로 발휘할 수 없으므로 함께 복용하지 않도록 합니다.", "severity": "medium" }
+    ],
+    "good": [],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2016-09-30"
+  },
+  "theobromine": {
+    "displayName": "theobromine",
+    "avoid": [],
+    "good": [],
+    "source": "식약처 약과 음식 상호작용 복약안내서",
+    "lastUpdated": "2016-09-30"
+  },
+  "hydrochlorothiazide": {
+    "displayName": "hydrochlorothiazide",
+    "avoid": [
+      { "food": "칼륨이 많은 식품(매실, 바나나, 토마토, 오렌지, 녹황색 채소, 저염소금 등 칼륨 함유 식염 대용물)", "reason": "칼륨 보존성 이뇨제와 병용 시 고칼륨혈증을 초래할 수 있어 주의가 필요합니다. 칼륨보충제 섭취 시 의사나 약사에게 알려야 합니다.", "severity": "medium" },
+      { "food": "화학조미료 MSG", "reason": "치아지드계 이뇨제는 MSG의 작용을 증가시켜 두통, 어지럼증, 입 주위 마비, 가슴·배의 통증 등을 나타낼 수 있으므로 주의가 필요합니다.", "severity": "low" },
+      { "food": "알로에", "reason": "치아지드나 고리 이뇨제와 알로에를 같이 복용하면 체내 칼륨량이 지나치게 감소될 수 있으므로 주의해야 하며, 과일과 야채를 많이 먹도록 해야 합니다.", "severity": "medium" },
+      { "food": "술(알코올)", "reason": "알코올은 혈압강하 효과를 증강시켜 기립성 저혈압을 초래할 수 있으므로 음주는 피해야 합니다.", "severity": "medium" }
     ],
     "good": [
-      { "food": "식후 복용, 칼슘·비타민D가 있는 음식", "reason": "위 부담을 줄이고 뼈 건강 유지에 도움이 돼요." }
+      { "food": "음식과 함께 복용", "reason": "이 약의 복용으로 위장장애가 나타날 때에는 음식과 같이 복용하세요." }
     ],
     "source": "식약처 약과 음식 상호작용 복약안내서",
-    "lastUpdated": "2026-01"
-  },
-  "almagate": {
-    "displayName": "알마게이트 (제산제)",
-    "avoid": [{ "food": "철분제와 동시 복용", "reason": "2시간 이상 간격을 두는 게 좋아요.", "severity": "medium" }],
-    "good": [],
-    "source": "복약안내 참고",
-    "lastUpdated": "2026-01"
-  },
-  "theobromine": {
-    "displayName": "테오브로민 (기관지 확장 성분)",
-    "avoid": [{ "food": "카페인(커피·에너지음료) 과다", "reason": "두근거림·불면이 심해질 수 있어요.", "severity": "medium" }],
-    "good": [{ "food": "정해진 시간에 복용", "reason": "효과를 일정하게 유지하는 데 좋아요." }],
-    "source": "복약안내 참고",
-    "lastUpdated": "2026-01"
-  },
-  "hydrochlorothiazide": {
-    "displayName": "히드로클로로티아지드 (이뇨제)",
-    "avoid": [{ "food": "짠 음식 (고나트륨)", "reason": "약의 이뇨 효과를 방해할 수 있어요.", "severity": "medium" }],
-    "good": [{ "food": "규칙적인 수분 섭취", "reason": "탈수를 막는 데 도움이 돼요." }],
-    "source": "복약안내 참고",
-    "lastUpdated": "2026-01"
-  },
-  "almagate": {
-    "displayName": "알마게이트 (제산제)",
-    "avoid": [{ "food": "철분제와 동시 복용", "reason": "2시간 이상 간격을 두는 게 좋아요.", "severity": "medium" }],
-    "good": [],
-    "source": "복약안내 참고",
-    "lastUpdated": "2026-01"
-  },
-  "theobromine": {
-    "displayName": "테오브로민 (기관지 확장 성분)",
-    "avoid": [{ "food": "카페인(커피·에너지음료) 과다", "reason": "두근거림·불면이 심해질 수 있어요.", "severity": "medium" }],
-    "good": [{ "food": "정해진 시간에 복용", "reason": "효과를 일정하게 유지하는 데 좋아요." }],
-    "source": "복약안내 참고",
-    "lastUpdated": "2026-01"
-  },
-  "hydrochlorothiazide": {
-    "displayName": "히드로클로로티아지드 (이뇨제)",
-    "avoid": [{ "food": "짠 음식 (고나트륨)", "reason": "약의 이뇨 효과를 방해할 수 있어요.", "severity": "medium" }],
-    "good": [{ "food": "규칙적인 수분 섭취", "reason": "탈수를 막는 데 도움이 돼요." }],
-    "source": "복약안내 참고",
-    "lastUpdated": "2026-01"
+    "lastUpdated": "2016-09-30"
   }
 }
-
