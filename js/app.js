@@ -120,18 +120,20 @@ function removeDrug(index) {
 }
 
 // ── 결과 표시 (약 이름만 보이고, 성분은 내부에서만 사용) ──
-function render() {
+async function render() {
   selectedEl.innerHTML = selectedDrugs
     .map((n, i) => `<span class="chip">${n}<button onclick="removeDrug(${i})">×</button></span>`)
     .join('');
 
   if (selectedDrugs.length === 0) { resultsEl.innerHTML = ''; return; }
 
-  resultsEl.innerHTML = selectedDrugs.map((name) => {
-    const ingredients = productToIngredients(name);
-    if (ingredients.length === 0) {
-      return `<div class="card"><h2>${name}</h2>` +
-        `<p class="empty">이 약에 대한 음식 궁합 정보가 아직 없어요. (확인 불가)</p></div>`;
+  const cards = [];
+  for (const name of selectedDrugs) {
+    const ingredients = await productToIngredients(name);
+    if (!ingredients || ingredients.length === 0) {
+      cards.push(`<div class="card"><h2>${name}</h2>` +
+        `<p class="empty">이 약에 대한 음식 궁합 정보가 아직 없어요. (확인 불가)</p></div>`);
+      continue;
     }
 
     const body = ingredients.map((ing) => {
@@ -151,8 +153,11 @@ function render() {
         `<div class="source">출처: ${info.source} (${info.lastUpdated})</div>`;
     }).join('');
 
-    return `<div class="card"><h2>${name}</h2>${body}</div>`;
-  }).join('');
+    cards.push(`<div class="card"><h2>${name}</h2>${body}</div>`);
+  }
+
+  resultsEl.innerHTML = cards.join('');
 }
+
 
 loadData().then(render);
