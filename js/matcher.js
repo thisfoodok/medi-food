@@ -7,7 +7,3 @@ function searchProducts(query) {
     .slice(0, 8);
 }
 
-// 상품명 → 성분코드 배열
-function productToIngredients(productName) {
-  return DB.products[productName] || [];
-}
