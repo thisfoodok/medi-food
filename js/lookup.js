@@ -105,13 +105,10 @@ const DB = {
 
 // ── 데이터 로드 ──
 async function loadData() {
-  const [productsRes, interactionsRes] = await Promise.all([
-    fetch('data/products.json'),
-    fetch('data/interactions.json')
-  ]);
-  DB.products = await productsRes.json();
+  const interactionsRes = await fetch('data/interactions.json');
   DB.interactions = await interactionsRes.json();
 }
+
 
 // ── 공백 제거 + 소문자화 (검색 비교용) ──
 function normalize(str) {
@@ -121,12 +118,9 @@ function normalize(str) {
 // ── 상품명 → 성분코드 배열 ──
 // products.json 구조: { "상품명": { ingredients: [...], aliases: [...] } }
 async function productToIngredients(productName) {
-  const entry = DB.products[productName];
-  if (entry && entry.ingredients && entry.ingredients.length > 0) {
-    return entry.ingredients;
-  }
   return await fetchIngredientsFromApi(productName);
 }
+
 
 
 // ── 성분코드 → 음식 정보 ──
