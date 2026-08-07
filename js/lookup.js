@@ -20,20 +20,28 @@ async function fetchIngredientsFromApi(productName) {
   const url = `${DRUG_API_BASE}?serviceKey=${DRUG_API_KEY}`
     + `&item_name=${encodeURIComponent(productName)}`
     + `&type=json&numOfRows=1&pageNo=1`;
+  console.log("① 호출 URL:", url);
   try {
     const res = await fetch(url);
+    console.log("② 응답 상태:", res.status);
     const data = await res.json();
+    console.log("③ 받은 데이터:", data);
     const items = data?.body?.items;
+    console.log("④ items:", items);
     if (!Array.isArray(items) || items.length === 0) return [];
     const eng = items[0]?.MAIN_INGR_ENG || "";
+    console.log("⑤ 영문성분:", eng);
     const list = eng.split("/")
       .map(s => normalizeIngredientName(s))
       .filter(Boolean);
+    console.log("⑥ 최종 성분배열:", list);
     return [...new Set(list)];
   } catch (e) {
+    console.log("❌ 에러 발생:", e);
     return [];
   }
 }
+
 
 // 전역 데이터 저장소
 const DB = {
