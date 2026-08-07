@@ -23,10 +23,8 @@ async function fetchIngredientsFromApi(productName) {
   try {
     const res = await fetch(url);
     const data = await res.json();
-    const body = data?.body;
-    if (!body || Number(body.totalCount) === 0) return [];
-    let items = body.items;
-    if (!Array.isArray(items)) items = items ? [items] : [];
+    const items = data?.body?.items;
+    if (!Array.isArray(items) || items.length === 0) return [];
     const eng = items[0]?.MAIN_INGR_ENG || "";
     const list = eng.split("/")
       .map(s => normalizeIngredientName(s))
@@ -36,6 +34,7 @@ async function fetchIngredientsFromApi(productName) {
     return [];
   }
 }
+
 // 전역 데이터 저장소
 const DB = {
   products: {},
