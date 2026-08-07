@@ -10,41 +10,27 @@ const resultsEl = document.getElementById('results');
 const photoInput = document.getElementById('photoInput');
 const ocrStatus = document.getElementById('ocrStatus');
 
-// ── 검색 입력 (별칭까지 매칭하되, 결과 목록엔 상품명만 표시) ──
+// ── 검색 입력: 입력한 약 이름을 Enter로 바로 추가 (API가 성분 조회) ──
+input.addEventListener('keydown', (e) => {
+  if (e.key !== 'Enter') return;
+  const query = input.value.trim();
+  if (query.length < 2) return;
+  addDrug(query);
+  input.value = '';
+  suggestionsEl.innerHTML = '';
+});
+
+// 입력 중에는 안내만 표시
 input.addEventListener('input', () => {
   const query = input.value.trim();
-  const matches = searchProducts(query, 8);
-
-  if (matches.length > 0) {
-    suggestionsEl.innerHTML = matches
-      .map(name => `<li data-name="${encodeURIComponent(name)}">${name}</li>`).join('');
-  } else if (query.length >= 2) {
-    // 검색어는 있는데 결과 0건 → 안내 + 추가 요청 버튼
+  if (query.length >= 2) {
     suggestionsEl.innerHTML =
-      `<li class="no-result">` +
-      `‘${query}’을(를) 찾지 못했어요. 철자를 확인하거나 약봉투 사진으로 시도해 보세요.<br>` +
-      `<button class="request-btn" data-name="${encodeURIComponent(query)}">＋ 이 약 추가 요청하기</button>` +
-      `<span class="request-note">입력하신 약 이름이 데이터 개선을 위해 익명으로 전송됩니다.</span>` +
-      `</li>`;
+      `<li class="no-result">‘${query}’ 검색하려면 Enter를 누르세요.</li>`;
   } else {
     suggestionsEl.innerHTML = '';
   }
 });
 
-suggestionsEl.addEventListener('click', (e) => {
-  // 추가 요청 버튼 클릭
-  const reqBtn = e.target.closest('.request-btn');
-  if (reqBtn) {
-    requestDrug(decodeURIComponent(reqBtn.dataset.name), reqBtn);
-    return;
-  }
-  // 일반 제안 선택
-  const li = e.target.closest('li');
-  if (!li || li.classList.contains('no-result')) return;
-  addDrug(decodeURIComponent(li.dataset.name));
-  input.value = '';
-  suggestionsEl.innerHTML = '';
-});
 
 // ── 없는 약 추가 요청 (약 이름만 전송) ──
 async function requestDrug(name, btn) {
