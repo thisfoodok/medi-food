@@ -1,7 +1,7 @@
 // ── 식약처 의약품 허가정보 API 설정 ──
 const DRUG_API_BASE =
   "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService07/getDrugPrdtPrmsnDtlInq06";
-const DRUG_API_KEY = "발급받은_Encoding_인증키";  // ← 본인 키로 교체
+const DRUG_API_KEY = "0Etcmuk6op0wz2DphT0c9jpRWf7vfw6OEB8jezpGHXhoyt7T7R2YY9T25%2BRjnCfaJlZBkpDsMrXZIpe8hHGAEQ%3D%3D";  // ← 본인 키로 교체
 
 const SALT_WORDS = [
   "besylate","hydrochloride","hcl","maleate","mesylate","sulfate",
