@@ -45,10 +45,14 @@
 
   <script>
     if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("service-worker.js");
+      navigator.serviceWorker.getRegistrations().then((regs) => {
+        regs.forEach((reg) => reg.unregister());
       });
     }
+    if (window.caches) {
+      caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
+    }
   </script>
+
 </body>
 </html>
