@@ -1,3 +1,41 @@
+// ── 식약처 의약품 허가정보 API 설정 ──
+const DRUG_API_BASE =
+  "https://apis.data.go.kr/1471000/DrugPrdtPrmsnInfoService07/getDrugPrdtPrmsnDtlInq06";
+const DRUG_API_KEY = "발급받은_Encoding_인증키";  // ← 본인 키로 교체
+
+const SALT_WORDS = [
+  "besylate","hydrochloride","hcl","maleate","mesylate","sulfate",
+  "sulphate","sodium","potassium","calcium","acetate","citrate",
+  "tartrate","fumarate","succinate","phosphate","nitrate","bromide",
+  "chloride","dihydrate","monohydrate","trihydrate","anhydrous"
+];
+
+function normalizeIngredientName(raw) {
+  const words = raw.toLowerCase().trim().split(/\s+/)
+    .filter(w => !SALT_WORDS.includes(w));
+  return words.join(" ").trim();
+}
+
+async function fetchIngredientsFromApi(productName) {
+  const url = `${DRUG_API_BASE}?serviceKey=${DRUG_API_KEY}`
+    + `&item_name=${encodeURIComponent(productName)}`
+    + `&type=json&numOfRows=1&pageNo=1`;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    const body = data?.body;
+    if (!body || Number(body.totalCount) === 0) return [];
+    let items = body.items;
+    if (!Array.isArray(items)) items = items ? [items] : [];
+    const eng = items[0]?.MAIN_INGR_ENG || "";
+    const list = eng.split("/")
+      .map(s => normalizeIngredientName(s))
+      .filter(Boolean);
+    return [...new Set(list)];
+  } catch (e) {
+    return [];
+  }
+}
 // 전역 데이터 저장소
 const DB = {
   products: {},
@@ -21,11 +59,14 @@ function normalize(str) {
 
 // ── 상품명 → 성분코드 배열 ──
 // products.json 구조: { "상품명": { ingredients: [...], aliases: [...] } }
-function productToIngredients(productName) {
+async function productToIngredients(productName) {
   const entry = DB.products[productName];
-  if (!entry) return [];
-  return entry.ingredients || [];
+  if (entry && entry.ingredients && entry.ingredients.length > 0) {
+    return entry.ingredients;
+  }
+  return await fetchIngredientsFromApi(productName);
 }
+
 
 // ── 성분코드 → 음식 정보 ──
 function getInteraction(ingredientCode) {
