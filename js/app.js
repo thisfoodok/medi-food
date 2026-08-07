@@ -66,9 +66,10 @@ photoInput.addEventListener('change', async () => {
     const rawFound = extractDrugNames(text);
     const found = [];
     for (const n of rawFound) {
-      const product = resolveToProduct(n);
-      if (product && !found.includes(product)) found.push(product);
+      const name = (n || "").trim();
+      if (name.length >= 2 && !found.includes(name)) found.push(name);
     }
+
 
     if (found.length === 0) {
       ocrStatus.textContent =
