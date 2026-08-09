@@ -71,31 +71,54 @@ function parseIngredientsFromMaterial(materialName) {
   return result;
 }
 
-async function fetchIngredientsFromApi(productName) {
+// item_name으로 API를 부르고 items 배열을 반환 (없으면 빈 배열)
+async function callDrugApi(itemName) {
   const url = `${DRUG_API_BASE}?serviceKey=${DRUG_API_KEY}`
-    + `&item_name=${encodeURIComponent(productName)}`
-    + `&type=json&numOfRows=1&pageNo=1`;
-
-
+    + `&item_name=${encodeURIComponent(itemName)}`
+    + `&type=json&numOfRows=5&pageNo=1`;
   console.log("① 호출 URL:", url);
+  const res = await fetch(url);
+  console.log("② 응답 상태:", res.status);
+  const data = await res.json();
+  let items = data?.body?.items;
+  if (items && !Array.isArray(items)) items = [items];
+  return Array.isArray(items) ? items : [];
+}
+
+// 상품명(정확 or 오인식)으로 성분배열 + 정식상품명을 함께 반환
+// 반환: { ingredients: [...], resolvedName: "정식이름" | null }
+async function fetchDrugInfo(productName) {
+  const name = (productName || "").trim();
   try {
-    const res = await fetch(url);
-    console.log("② 응답 상태:", res.status);
-    const data = await res.json();
-    console.log("③ 받은 데이터:", data);
-    const items = data?.body?.items;
-    console.log("④ items:", items);
-    if (!Array.isArray(items) || items.length === 0) return [];
+    // 1차: 이름 그대로 검색
+    let items = await callDrugApi(name);
+
+    // 2차: 못 찾으면 뒷부분을 조금씩 잘라 앞부분으로 부분검색 (OCR 오인식 보정)
+    if (items.length === 0 && name.length >= 3) {
+      for (let cut = 1; cut <= 2 && name.length - cut >= 2; cut++) {
+        const partial = name.slice(0, name.length - cut);
+        items = await callDrugApi(partial);
+        if (items.length > 0) break;
+      }
+    }
+
+    if (items.length === 0) {
+      console.log("❌ 검색 결과 없음:", name);
+      return { ingredients: [], resolvedName: null };
+    }
+
+    const resolvedName = items[0]?.ITEM_NAME || name;
     const material = items[0]?.MATERIAL_NAME || "";
-    console.log("⑤ 성분원문(MATERIAL_NAME):", material);
+    console.log("⑤ 정식상품명:", resolvedName, "| 성분원문:", material);
     const list = parseIngredientsFromMaterial(material);
     console.log("⑥ 최종 성분배열:", list);
-    return list;
+    return { ingredients: list, resolvedName };
   } catch (e) {
     console.log("❌ 에러 발생:", e);
-    return [];
+    return { ingredients: [], resolvedName: null };
   }
 }
+
 
 
 
@@ -120,7 +143,8 @@ function normalize(str) {
 // ── 상품명 → 성분코드 배열 ──
 // products.json 구조: { "상품명": { ingredients: [...], aliases: [...] } }
 async function productToIngredients(productName) {
-  return await fetchIngredientsFromApi(productName);
+  const info = await fetchDrugInfo(productName);
+  return info.ingredients;
 }
 
 
