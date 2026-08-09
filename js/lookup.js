@@ -72,9 +72,11 @@ function parseIngredientsFromMaterial(materialName) {
 }
 
 async function fetchIngredientsFromApi(productName) {
-  const url = `${DRUG_API_BASE}?serviceKey=${DRUG_API_KEY}`
+  const apiUrl = `${DRUG_API_BASE}?serviceKey=${DRUG_API_KEY}`
     + `&item_name=${encodeURIComponent(productName)}`
     + `&type=json&numOfRows=1&pageNo=1`;
+  const url = "https://corsproxy.io/?url=" + encodeURIComponent(apiUrl);
+
   console.log("① 호출 URL:", url);
   try {
     const res = await fetch(url);
