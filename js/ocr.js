@@ -1,5 +1,4 @@
 // ── 이미지 전처리: 확대 + 흑백 + 대비 강화 ──
-// 작은 회색 성분명 글씨를 OCR이 읽기 쉽게 만든다.
 async function preprocessImage(file) {
   const img = await new Promise((resolve, reject) => {
     const image = new Image();
@@ -8,7 +7,6 @@ async function preprocessImage(file) {
     image.src = URL.createObjectURL(file);
   });
 
-  // 가로 기준 최소 2000px이 되도록 확대 (작은 글씨 키우기)
   const scale = Math.max(2, 2000 / img.width);
   const canvas = document.createElement("canvas");
   canvas.width = img.width * scale;
@@ -16,14 +14,11 @@ async function preprocessImage(file) {
   const ctx = canvas.getContext("2d");
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-  // 흑백 + 대비 강화
   const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   const d = imgData.data;
-  const contrast = 1.6; // 대비 강도
+  const contrast = 1.5;
   for (let i = 0; i < d.length; i += 4) {
-    // 회색조 변환
     let gray = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
-    // 대비 강화 (128 기준으로 벌림)
     gray = (gray - 128) * contrast + 128;
     gray = Math.max(0, Math.min(255, gray));
     d[i] = d[i + 1] = d[i + 2] = gray;
@@ -42,44 +37,36 @@ async function runOCR(file, onProgress) {
       if (m.status === "recognizing text" && onProgress) {
         onProgress(Math.round(m.progress * 100));
       }
-    },
-    // 문서 전체를 여러 줄로 인식하도록 설정
-    tessedit_pageseg_mode: "6"
+    }
   });
 
-  const rawText = result.data.text;
-
-  // ── OCR 원문 확인용 (임시) ──
-  let dbg = document.getElementById("ocrDebug");
-  if (!dbg) {
-    dbg = document.createElement("pre");
-    dbg.id = "ocrDebug";
-    dbg.style.cssText =
-      "white-space:pre-wrap;background:#fffbe6;border:2px solid #f0c000;padding:10px;margin:10px 0;font-size:13px;";
-    document.body.prepend(dbg);
-  }
-  dbg.textContent = "── OCR이 읽은 원문 ──\n" + rawText;
-
-  return rawText;
+  return result.data.text;
 }
 
-// ── 사진에서 읽은 텍스트에서 성분명을 찾아낸다 ──
+// ── 사진에서 읽은 텍스트에서 "상품명"을 찾아낸다 ──
+// 큰 글씨인 상품명은 OCR이 잘 읽으므로, "정/캡슐/시럽" 등으로 끝나는 약 이름을 뽑는다.
+// 뽑은 상품명은 그대로 API에 넘겨 성분을 조회한다.
 function extractDrugNames(text) {
   const found = [];
   const lines = (text || "").split(/[\n\r]+/);
 
-  const ingredientMarkers =
-    /(아세트아미노펜|이부프로펜|아스피린|살리실산|와파린|스타틴|사르탄|프릴|디핀|티아지드|프라졸|티딘|마이신|실린|시클린|프로펜|프레드니솔론|프레드니손|미소프로스톨|레바미피드|메트포르민|글리메피리드|글리클라짓|글립틴|글리타존|알마게이트|테오브로민)/;
+  // 상품명 끝에 흔한 제형 표시
+  const productMarkers =
+    /(정|캡슐|캅셀|시럽|산|과립|연고|크림|주사|주|액|겔)$/;
 
   for (const line of lines) {
+    // 한글·영문·숫자만 남기고 나머지는 공백으로
     const words = line.split(/[^가-힣A-Za-z0-9]+/);
     for (let w of words) {
-      const word = (w || "").trim();
+      let word = (w || "").trim();
+      // 뒤에 붙은 숫자/용량 제거 (예: 리피토정10 → 리피토정)
+      word = word.replace(/[0-9]+$/, "");
       const korCount = (word.match(/[가-힣]/g) || []).length;
-      if (korCount < 3) continue;
-      if (word.length < 4 || word.length > 30) continue;
+      if (korCount < 2) continue;
+      if (word.length < 3 || word.length > 20) continue;
 
-      if (ingredientMarkers.test(word)) {
+      // 제형 표시로 끝나는 것만 상품명 후보로 인정
+      if (productMarkers.test(word)) {
         if (!found.includes(word)) found.push(word);
       }
     }
