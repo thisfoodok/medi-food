@@ -7,7 +7,18 @@ async function runOCR(file, onProgress) {
       }
     }
   });
-  return result.data.text;
+  const rawText = result.data.text;
+  // ── OCR 원문 확인용 (임시) ──
+  let dbg = document.getElementById("ocrDebug");
+  if (!dbg) {
+    dbg = document.createElement("pre");
+    dbg.id = "ocrDebug";
+    dbg.style.cssText =
+      "white-space:pre-wrap;background:#fffbe6;border:2px solid #f0c000;padding:10px;margin:10px 0;font-size:13px;";
+    document.body.prepend(dbg);
+  }
+  dbg.textContent = "── OCR이 읽은 원문 ──\n" + rawText;
+  return rawText;
 }
 
 // 사진에서 읽은 전체 텍스트에서 products.json에 있는 약을 찾아낸다.
