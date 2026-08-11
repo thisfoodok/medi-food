@@ -78,3 +78,20 @@ h1 { font-size: 1.5rem; margin-bottom: 4px; }
 
 .ingredient-note { font-size: .85rem; color: #3b82f6; margin-bottom: 10px; }
 
+/* 음식 아이콘 크게 + 글자와 세로 가운데 정렬 */
+.food-icon {
+  font-size: 32px;      /* 더 크게 하려면 40, 48px 등으로 조절 */
+  line-height: 1;
+  margin-right: 8px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.food-name {
+  vertical-align: middle;
+  font-weight: 600;
+}
+.food {
+  display: flex;
+  align-items: center;   /* 아이콘과 글자 세로 가운데 맞춤 */
+  gap: 4px;
+}
