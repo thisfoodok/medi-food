@@ -87,11 +87,30 @@ async function callDrugApi(itemName) {
 
 // 상품명(정확 or 오인식)으로 성분배열 + 정식상품명을 함께 반환
 // 반환: { ingredients: [...], resolvedName: "정식이름" | null }
+// 약 이름 끝의 용량·수량 표기를 제거 (API는 "리피토정10mg"를 못 찾고 "리피토정"만 찾음)
+function stripDosage(name) {
+  return (name || "")
+    .replace(/\s*\d+(\.\d+)?\s*(mg|밀리그램|mcg|마이크로그램|g|그램|ml|밀리리터|iu|정|캡슐)\b/gi, "")
+    .replace(/\s*\d+(\.\d+)?\s*\/\s*\d+(\.\d+)?/g, "")  // "0.5/10" 같은 복합 용량
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 async function fetchDrugInfo(productName) {
   const name = (productName || "").trim();
   try {
     // 1차: 이름 그대로 검색
     let items = await callDrugApi(name);
+
+    // 1.5차: 용량 표기를 떼고 재검색 (예: "리피토정10mg" → "리피토정")
+    if (items.length === 0) {
+      const stripped = stripDosage(name);
+      if (stripped && stripped !== name) {
+        console.log("💊 용량 제거 후 재검색:", stripped);
+        items = await callDrugApi(stripped);
+      }
+    }
+
 
     // 2차: 못 찾으면 뒷부분을 조금씩 잘라 앞부분으로 부분검색 (OCR 오인식 보정)
     if (items.length === 0 && name.length >= 3) {
