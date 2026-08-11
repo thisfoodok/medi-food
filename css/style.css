@@ -95,3 +95,23 @@ h1 { font-size: 1.5rem; margin-bottom: 4px; }
   align-items: center;   /* 아이콘과 글자 세로 가운데 맞춤 */
   gap: 4px;
 }
+/* 상단 요약 영역 */
+.summary { margin: 16px 0; }
+.summary-title { font-size: 20px; margin-bottom: 12px; }
+.summary-block { margin-bottom: 14px; padding: 12px; border-radius: 12px; background: #f7f8fa; }
+.summary-block.avoid { background: #fff4f2; }
+.summary-block.good  { background: #f1faf3; }
+.summary-head { font-weight: 700; margin-bottom: 8px; }
+
+/* 아이콘 크게 + 정렬 (앞서 요청한 큰 아이콘) */
+.food-icon { font-size: 32px; line-height: 1; margin-right: 8px; display: inline-block; vertical-align: middle; }
+.food-name { vertical-align: middle; font-weight: 600; }
+.food { display: flex; align-items: center; gap: 4px; }
+
+/* 약 버튼(칩) 눌러서 상세 여는 느낌 */
+.chip { cursor: pointer; }
+.chip.active { background: #3b82f6; color: #fff; }
+.chip-x { margin-left: 6px; cursor: pointer; }
+
+/* 안내 문구 */
+.hint { color: #666; font-size: 14px; margin-top: 10px; }
