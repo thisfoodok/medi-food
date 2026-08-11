@@ -129,18 +129,20 @@ async function render() {
         return `<p class="empty">이 성분에 대한 음식 궁합 정보가 아직 없어요. (확인 불가)</p>`;
       }
       if ((!info.avoid || info.avoid.length === 0) && (!info.good || info.good.length === 0)) {
-        return `<p class="ok">✅ 특별히 주의할 음식은 없어요.</p>` +
+        return `<p class="ok"><span class="food-icon">✅</span> 특별히 주의할 음식은 없어요.</p>` +
+
           `<div class="source">출처: ${info.source} (${info.lastUpdated})</div>`;
       }
 
       const avoid = info.avoid?.map(f =>
         `<div class="food-item avoid ${f.severity}">` +
-        `<div class="food">🚫 ${f.food}</div>` +
+        `<div class="food"><span class="food-icon">🚫</span><span class="food-name">${f.food}</span></div>` +
         `<div class="reason">${f.reason}</div></div>`).join('') || '';
       const good = info.good?.map(f =>
         `<div class="food-item good">` +
-        `<div class="food">✅ ${f.food}</div>` +
+        `<div class="food"><span class="food-icon">✅</span><span class="food-name">${f.food}</span></div>` +
         `<div class="reason">${f.reason}</div></div>`).join('') || '';
+
       return `${avoid}${good}` +
         `<div class="source">출처: ${info.source} (${info.lastUpdated})</div>`;
     }).join('');
