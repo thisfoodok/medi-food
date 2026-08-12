@@ -13,19 +13,6 @@
     <h1>이거 먹어도 돼?</h1>
     <p class="sub">약봉투를 찍거나 약 이름을 검색해 확인하세요.</p>
 
-    <!-- 약봉투 촬영/업로드 -->
-    <div class="scan-box">
-      <label for="photoInput" class="scan-btn">📷 약봉투 사진 찍기 / 올리기</label>
-      <input type="file" id="photoInput" accept="image/*" capture="environment" hidden>
-      <p id="ocrStatus" class="ocr-status"></p>
-    </div>
-
-    <!-- 직접 검색 -->
-    <div class="search-box">
-      <input type="text" id="searchInput" placeholder="또는 약 이름 검색: 타이레놀…" autocomplete="off">
-      <ul id="suggestions" class="suggestions"></ul>
-    </div>
-
     <!-- 여러 약을 합친 음식 궁합 요약 (맨 위에 먼저 보임) -->
     <section id="summary" class="summary"></section>
 
@@ -34,6 +21,20 @@
 
     <!-- 선택한 약의 개별 상세 -->
     <section id="results" class="results"></section>
+
+    <!-- 약봉투 촬영/업로드 (아래로 이동) -->
+    <div class="scan-box">
+      <label for="photoInput" class="scan-btn">📷 약봉투 사진 찍기 / 올리기</label>
+      <input type="file" id="photoInput" accept="image/*" capture="environment" hidden>
+      <p id="ocrStatus" class="ocr-status"></p>
+    </div>
+
+    <!-- 직접 검색 (아래로 이동) -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="또는 약 이름 검색: 타이레놀…" autocomplete="off">
+      <ul id="suggestions" class="suggestions"></ul>
+    </div>
+
 
 
     <footer class="disclaimer">
