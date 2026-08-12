@@ -145,11 +145,14 @@ async function getDrugFacts(name) {
 
 // ── 화면 그리기 ──
 async function render() {
-  // 1) 모든 약의 정보를 모아둔다 (요약 + 개별 상세에 공통 사용)
+  // 1) 모든 약을 동시에 조회 (하나씩 기다리지 않음 → 훨씬 빠름)
   const allFacts = {};
-  for (const name of selectedDrugs) {
-    allFacts[name] = await getDrugFacts(name);
-  }
+  await Promise.all(
+    selectedDrugs.map(async (name) => {
+      allFacts[name] = await getDrugFacts(name);
+    })
+  );
+
 
   // 2) 상단 요약: 모든 약의 피해야 할 음식 / 함께 먹으면 좋은 음식을 합쳐 중복 제거
   renderSummary(allFacts);
