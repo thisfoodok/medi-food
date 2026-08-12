@@ -112,11 +112,20 @@ function removeDrug(index) {
 // 현재 펼쳐서 보고 있는 약 이름 (null이면 아무것도 안 펼침)
 let openDrug = null;
 
-// 약 하나의 성분별 음식정보를 { avoid:[], good:[], hasInfo, allSafe } 로 정리
+// 이미 조회한 약은 저장해두고 재사용 (같은 약 재조회 방지)
+const factsCache = {};
+
+// 약 하나의 성분별 음식정보를 { avoid:[], good:[], hasInfo, allSafe } 로 정리 (캐시 사용)
 async function getDrugFacts(name) {
+  if (factsCache[name]) return factsCache[name];   // 이미 있으면 즉시 반환
+
   const ingredients = await productToIngredients(name);
   const facts = { avoid: [], good: [], hasInfo: false, allSafe: false, unknown: false };
-  if (!ingredients || ingredients.length === 0) { facts.unknown = true; return facts; }
+  if (!ingredients || ingredients.length === 0) {
+    facts.unknown = true;
+    factsCache[name] = facts;
+    return facts;
+  }
 
   let matchedAny = false;
   for (const ing of ingredients) {
@@ -128,8 +137,11 @@ async function getDrugFacts(name) {
   }
   facts.hasInfo = matchedAny;
   facts.allSafe = matchedAny && facts.avoid.length === 0 && facts.good.length === 0;
+
+  factsCache[name] = facts;   // 결과 저장
   return facts;
 }
+
 
 // ── 화면 그리기 ──
 async function render() {
