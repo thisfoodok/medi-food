@@ -75,12 +75,14 @@ photoInput.addEventListener('change', async () => {
       ocrStatus.textContent =
         "약 이름을 찾지 못했어요. 사진을 더 크고 또렷하게 다시 찍거나 아래에서 직접 검색해 주세요.";
     } else {
-      ocrStatus.innerHTML =
-        "사진에서 이런 약을 찾았어요. 맞는 것을 눌러 추가하세요:<br>" +
-        found.map(n =>
-          `<button class="ocr-suggest" data-name="${encodeURIComponent(n)}">＋ ${n}</button>`
-        ).join(' ');
+      // 찾은 약을 바로 전부 추가 → 위쪽에 음식 궁합 요약이 즉시 표시됨
+      ocrStatus.textContent =
+        `사진에서 ${found.length}개의 약을 찾았어요. 아래 요약을 확인하세요.`;
+      for (const n of found) {
+        addDrug(n);
+      }
     }
+
   } catch (err) {
     ocrStatus.textContent = "사진 인식에 실패했어요. 다시 시도해 주세요.";
   }
